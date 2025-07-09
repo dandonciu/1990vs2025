@@ -1,1 +1,96 @@
+/* Stiluri generale pentru pagină */
+body {
+    margin: 0;
+    padding: 0; /* Am scos padding-ul pentru a lăsa conținutul să ocupe tot spațiul */
+    background-color: #ffffff; 
+}
 
+/* 
+Containerul principal - acum aliniat la stânga, fără lățime maximă pe mobil 
+*/
+.main-wrapper {
+    /* Nu mai are max-width, se va întinde cât are nevoie */
+}
+
+/* 
+Containerul de imagini
+OBIECTIV 2: L-am făcut să aibă o lățime fixă, ca înainte.
+Pe mobil, va fi mai lat decât ecranul, forțând scroll-ul orizontal,
+dar păstrând imaginile MARI.
+*/
+.twentytwenty-container {
+    width: 800px; /* Lățime fixă, ca în codul tău original */
+    height: 600px; /* Înălțime fixă, ca în codul tău original */
+    position: relative;
+    overflow: hidden;
+    margin: 20px; /* Puțin spațiu pe margini */
+}
+
+/* Stiluri pentru handle-ul negru, vizibil */
+.twentytwenty-handle {
+    position: absolute; top: 0; left: 50%; width: 30px; height: 100%;
+    transform: translateX(-50%); z-index: 3;
+    cursor: ew-resize;
+}
+.handle-line {
+    position: absolute; left: 50%; top: 0; width: 3px; height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+.handle-arrows {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 100%;
+    display: flex; justify-content: space-between;
+}
+.handle-arrow {
+    width: 0; height: 0; border-style: solid; border-width: 6px 8px 6px 0;
+    border-color: transparent rgba(0,0,0,0.4) transparent transparent;
+}
+.handle-arrow.right { transform: rotate(180deg); }
+
+
+/* Restul stilurilor pentru imagini, ca înainte */
+.twentytwenty-before-container, .twentytwenty-after {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;
+}
+.twentytwenty-before {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    clip-path: inset(0 50% 0 0);
+}
+.twentytwenty-before-container { z-index: 1; }
+.twentytwenty-before img, .twentytwenty-after img {
+    width: 100%; height: 100%; object-fit: cover; display: block; user-select: none;
+}
+
+/* Containerul pentru controalele audio */
+.audio-controls {
+    display: flex;
+    align-items: center;
+    padding-left: 30px; /* Aliniat cu marginea containerului de imagini */
+    gap: 5px;
+}
+
+/* 
+Butonul de ON/OFF
+OBIECTIV 1: Mai mic, fără culoare de fundal, doar chenar.
+*/
+#musicToggle {
+    background-color: transparent;
+    border: none; /* Am scos chenarul */
+    color: #888; /* Culoarea iconiței */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slider-ul de volum */
+#volumeControl {
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+}
