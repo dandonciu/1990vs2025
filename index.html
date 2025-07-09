@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1990 vs 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="main-wrapper">
+
+        <div class="twentytwenty-container">
+            <div class="twentytwenty-before-container">
+                <div class="twentytwenty-before">
+                    <img src="img/colaj1.jpg" alt="Before">
+                </div>
+            </div>
+            <div class="twentytwenty-after">
+                <img src="img/colaj2.jpg" alt="After">
+            </div>
+            <div class="twentytwenty-handle">
+                <div class="handle-line"></div>
+                <div class="handle-arrows">
+                    <div class="handle-arrow left"></div>
+                    <div class="handle-arrow right"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="audio-controls">
+            <!-- PUNCTUL 3: Am scos textul inițial din buton -->
+            <button id="musicToggle">🔇</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.3">
+        </div>
+
+    </div>
+
+    <audio id="bgMusic" loop src="audio/Peter_Green.mp3"></audio>
+
+    <script src="script.js"></script>
+    
+<script>
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const volumeControl = document.getElementById('volumeControl');
+
+        bgMusic.volume = volumeControl.value;
+
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(e => console.error("Redarea a eșuat:", e));
+            } else {
+                bgMusic.pause();
+            }
+        });
+
+        // Actualizează DOAR iconița butonului
+        bgMusic.addEventListener('play', () => {
+            musicToggle.innerHTML = '🔊';
+        });
+
+        bgMusic.addEventListener('pause', () => {
+            musicToggle.innerHTML = '🔇';
+        });
+        
+        volumeControl.addEventListener('input', () => {
+            bgMusic.volume = volumeControl.value;
+        });
+    </script>
+</body>
+</html>
